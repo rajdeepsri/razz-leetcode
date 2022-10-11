@@ -10,7 +10,7 @@
  */
 class Solution {
 private:
-    ListNode* solve(ListNode* list1, ListNode* list2){
+    ListNode* solve(ListNode* &list1, ListNode* &list2){
         //first list m sirf 1 node hua toh direct connect
         if(list1->next==NULL){
             list1->next = list2;
