@@ -9,30 +9,30 @@
  * };
  */
 class Solution {
-void InsertAtTail(ListNode* &tail, int sum){
-    ListNode* temp = new ListNode(sum);
-    tail->next=temp;
-    tail=temp;
+int getLen(ListNode* head){
+    int len=0;
+    while(head!=NULL){
+        head=head->next;
+        len++;
+    }
+    return len;
 }
-public:
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+ListNode* add(ListNode* &l1, ListNode* &l2){
         ListNode* curr1 = l1;
         ListNode* curr2 = l2;
-        ListNode* dummy = new ListNode(-1);
-        ListNode* tail=dummy;
         ListNode* prev = NULL;
         
         int sum=0;
         int carry=0;
         
         while(curr1!=NULL && curr2!=NULL){
-            sum=curr1->val + curr2->val;
-            if(sum+carry<10){
-                InsertAtTail(tail, (sum+carry));
+            sum=curr1->val + curr2->val + carry;
+            if(sum<10){
+                curr1->val = sum;
                 carry=0;
             }
             else{
-                InsertAtTail(tail, (sum+carry)%10);
+                curr1->val = sum%10;
                 carry=1;
             }
             prev=curr1;
@@ -41,38 +41,29 @@ public:
         }
         
         while(curr1!=NULL){
-            sum=curr1->val;
-            if(sum+carry<10){
-                InsertAtTail(tail, (sum+carry));
+            sum=curr1->val + carry;
+            if(sum<10){
+                curr1->val = sum;
                 carry=0;
             }
             else{
-                InsertAtTail(tail, (sum+carry)%10);
+                curr1->val = sum%10;
                 carry=1;
             }
             prev=curr1;
             curr1=curr1->next;
         }
-        
-        while(curr2!=NULL){
-            sum=curr2->val;
-            if(sum+carry<10){
-                InsertAtTail(tail, (sum+carry));
-                carry=0;
-            }
-            else{
-                InsertAtTail(tail, (sum+carry)%10);
-                carry=1;
-            }
-            prev=curr2;
-            curr2=curr2->next;
-        }
-        
+    
         if(carry!=0){
-            InsertAtTail(tail,carry);
+            ListNode* temp = new ListNode(carry);
+            prev->next=temp;
         }
-        
-        return dummy->next;
+    return l1;
+}
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if(getLen(l1) > getLen(l2)) return add(l1,l2);
+        return add(l2,l1);
     }
 };
 
