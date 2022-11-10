@@ -16,12 +16,12 @@ public:
                 }
             }
         }
-        string ans;
+        s.erase();
         while(!st.empty()){
-            ans.push_back(st.top());
+            s.push_back(st.top());
             st.pop();
         }
-        reverse(ans.begin(), ans.end());
-        return ans;
+        reverse(s.begin(), s.end());
+        return s;
     }
 };
