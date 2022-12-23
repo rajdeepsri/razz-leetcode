@@ -11,29 +11,14 @@ using namespace std;
 class Solution{
     public:
     string longest(string names[], int n)
-
     {
 
         string max=names[0];
-
-        
-
-        for(int i=0;i<n;i++)
-
-        {
-
+        for(int i=0;i<n;i++){
             if(names[i].length()>max.length())
-
             max=names[i];
-
-            
-
         }
-
-        
-
         return max;
-
     }   
 };
 
