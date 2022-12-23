@@ -5,25 +5,21 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 	public:
-		string FirstNonRepeating(string A){
-		    unordered_map<char,int> count;
-		    queue<char> q;
+		string FirstNonRepeating(string s){
+		    int arr[27]={0};
 		    string ans="";
+		    queue<int> q;
 		    
-		    for(char ch : A){
-		        //increasing count
-		        count[ch]++;
-		        
-		        //queue me push kro
-		        q.push(ch);
+		    for(int i=0; i<s.size(); i++){
+		        arr[s[i]-'a']++; //increase count
+		        q.push(s[i]);
 		        
 		        while(!q.empty()){
-		            if(count[q.front()] > 1){
-		                //repeating character
-		                q.pop();
-		            }
-		            else{
-		                //non-repeating h toh push krdo
+		            //repeating
+		            if(arr[q.front()-'a'] > 1) q.pop();
+		            //non repeating
+		            else
+		            {
 		                ans.push_back(q.front());
 		                break;
 		            }
