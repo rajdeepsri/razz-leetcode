@@ -13,13 +13,10 @@ public:
         
         //iterating the map
         for(auto i:mp){
-            while(i.second>4){
-                i.second -=3;
-                count++;
-            }
             if(i.second==1) return -1;
-            if(i.second==2 || i.second==3) count++;
-            if(i.second==4) count+=2;
+            
+            if(i.second%3==0) count += i.second/3;
+            else count += i.second/3 + 1;
         }
         return count;
     }
