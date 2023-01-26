@@ -15,7 +15,6 @@ class Solution
     string caseSort(string s, int n){
         string lower="";
         string upper="";
-        string ans="";
         
         for(int i=0; i<n; i++){
             if(isupper(s[i])) upper += s[i];
@@ -31,18 +30,18 @@ class Solution
         for(int i=0; i<n; i++){
             if(idx_upper < upper.size()){
                 if(isupper(s[i])){
-                    ans += upper[idx_upper];
+                    s[i] = upper[idx_upper];
                     idx_upper++;
                 }
             }
             if(idx_lower < lower.size()){
                 if(islower(s[i])){
-                    ans += lower[idx_lower];
+                    s[i] = lower[idx_lower];
                     idx_lower++;
                 }
             }
         }
-        return ans;
+        return s;
     }
 };
 
